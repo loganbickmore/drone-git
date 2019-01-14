@@ -41,8 +41,10 @@ if [[ -z "${GIT_AUTHOR_EMAIL}" ]]; then
 	export DRONE_COMMIT_AUTHOR_EMAIL=drone@localhost
 fi
 
-if [ "${PLUGIN_SSL_VERIFY}" = true ]; then
-	git config --global http.sslVerify false
+if [ "${PLUGIN_GIT_SSL_NO_VERIFY}" = true ]; then
+	echo "Setting GIT_SSL_NO_VERIFY to true"
+	export GIT_SSL_NO_VERIFY=true
+	# git config --global http.sslVerify false
 fi
 
 export GIT_AUTHOR_NAME=${DRONE_COMMIT_AUTHOR_NAME}
